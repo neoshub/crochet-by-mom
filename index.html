@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crochet by Mom - Handmade with Love</title>
+    <style>
+        :root {
+            --bg-color: #fff8f6;
+            --primary-color: #7a3d5c;
+            --secondary-color: #ff7fa8;
+            --accent-warm: #fff3e6;
+            --accent-pink: #ffd6e7;
+            --text-dark: #5b3b3b;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            scroll-behavior: smooth;
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(122, 61, 92, 0.1);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--secondary-color);
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-warm));
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom: 4px dashed var(--secondary-color);
+        }
+
+        header h1 {
+            font-size: 3.5em;
+            margin: 0.2em 0;
+            color: var(--primary-color);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        header p {
+            font-size: 1.3em;
+            font-style: italic;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(255, 127, 168, 0.4);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(255, 127, 168, 0.6);
+        }
+
+        section {
+            padding: 60px 20px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--primary-color);
+            font-size: 2.2em;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        h2::after {
+            content: '🌸';
+            display: block;
+            font-size: 0.5em;
+            margin-top: 10px;
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .showcase-item {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 2px solid var(--accent-pink);
+            text-align: center;
+        }
+
+        .showcase-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .highlights-container {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .highlights-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 24px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.04);
+            text-align: center;
+            border: 1px solid rgba(255, 214, 231, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 22px rgba(122, 61, 92, 0.15);
+        }
+
+        .card h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+
+        .info-panel {
+            background: #fff;
+            border-radius: 24px;
+            padding: 30px;
+            margin-top: 40px;
+            border: 2px dashed var(--secondary-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .info-panel img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+        }
+
+        #contact {
+            background: linear-gradient(135deg, #fff, var(--accent-warm));
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            margin-bottom: 60px;
+        }
+
+        .contact-info {
+            font-size: 1.2em;
+            margin: 15px 0;
+        }
+
+        footer {
+            background: var(--primary-color);
+            color: #fff;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 1em;
+        }
+
+        .whatsapp {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background: #25D366;
+            color: #fff;
+            padding: 15px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s ease;
+        }
+
+        .whatsapp:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.5em; }
+            section { padding: 40px 15px; }
+        }
+    
+.navbar{padding:10px 16px;background:rgba(255,255,255,.85);backdrop-filter:blur(12px)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1100px;margin:auto}
+.logo{font-weight:700;color:var(--primary-color);font-size:1.3rem}
+.menu-toggle{display:none;background:none;border:none;font-size:1.8rem;color:var(--primary-color)}
+.nav-links{display:flex;gap:18px}
+header{min-height:70vh;display:flex;flex-direction:column;justify-content:center;align-items:center;background:linear-gradient(135deg,#ffd6e7,#fff3e6,#ffe7f2)}
+header .btn{background:linear-gradient(45deg,#ff7fa8,#7a3d5c)}
+@media(max-width:768px){
+.menu-toggle{display:block}
+.nav-links{display:none;position:absolute;top:60px;left:10px;right:10px;background:#fff;border-radius:16px;flex-direction:column;padding:15px;box-shadow:0 10px 30px rgba(0,0,0,.12)}
+.nav-links.open{display:flex;animation:fade .3s}
+nav a{margin:8px 0}
+}
+@keyframes fade{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+
+</style>
+</head>
+<body>
+
+<nav class="navbar"><div class="nav-inner"><div class="logo">🧶 Crochet by Mom</div><button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button><div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#explore">Explore World</a>
+    <a href="#products">Products</a>
+    <a href="#care">Care Guide</a>
+    <a href="#contact">Connect</a>
+</div></div></nav>
+
+<header>
+    <h1>🧶 Crochet by Mom</h1>
+    <p>Handmade with Love ❤️</p>
+    <a class="btn" href="#products">Explore Entire Collection</a>
+</header>
+
+<section id="about">
+    <h2>About Our Craft</h2>
+    <div class="showcase-grid">
+        <div class="showcase-item">
+            <img src="1782552657549.png" alt="Crochet by Mom Identity Template Image">
+        </div>
+    </div>
+</section>
+
+<section id="explore">
+    <h2>Explore Our World</h2>
+    <div class="highlights-container">
+        <img src="IMG-20260627-WA0005.jpg" class="highlights-img" alt="Instagram Highlight Stories Catalog">
+    </div>
+</section>
+
+<section id="products">
+    <h2>Our Signature Creations</h2>
+    <div class="cards">
+        <div class="card">
+            <h3>🧿 Evil Eye Keychain</h3>
+            <p>Handmade lucky charm protecting your keys with style.</p>
+        </div>
+        <div class="card">
+            <h3>🌻 Crochet Flowers</h3>
+            <p>Beautiful ever-blooming sunflowers and floral choices.</p>
+        </div>
+        <div class="card">
+            <h3>👜 Handcrafted Bags</h3>
+            <p>Stylish, spacious granny square pattern accessories.</p>
+        </div>
+        <div class="card">
+            <h3>🎀 Premium Scrunchies</h3>
+            <p>Soft, colorful, elastic hair accessories crafted with comfort.</p>
+        </div>
+        <div class="card">
+            <h3>🐰 Amigurumi Toys</h3>
+            <p>Unbelievably cute crochet plushies, rabbits, and bees.</p>
+        </div>
+        <div class="card">
+            <h3>💝 Custom Requests</h3>
+            <p>Have an idea? Let us weave it into reality specifically for you.</p>
+        </div>
+    </div>
+    
+    <div class="highlights-container" style="margin-top: 50px;">
+        <img src="IMG-20260627-WA0004.jpg" class="highlights-img" alt="Product Handmade Labels Showcase">
+    </div>
+</section>
+
+<section id="care">
+    <h2>Handle With Care</h2>
+    <div class="info-panel">
+        <img src="IMG-20260627-WA0006.jpg" alt="Care Instructions Infographic">
+        <p style="text-align: center; max-width: 600px; font-style: italic; margin-top: 15px;">
+            "Your order made our day! We hope this little handmade piece brings you lots of joy and smiles. Support small, support handmade."
+        </p>
+    </div>
+</section>
+
+<section id="contact">
+    <h2>Let's Connect</h2>
+    <p class="contact-info">📸 <b>Instagram:</b> <a href="https://www.instagram.com/crochetbymom11" target="_blank" style="color: var(--secondary-color); font-weight: bold; text-decoration: none;">@crochetbymom11</a></p>
+    <p class="contact-info">💬 <b>WhatsApp support available for customized inquiries</b></p>
+    <p style="margin-top: 25px; font-size: 1.1em; color: var(--primary-color);">Thank you for supporting our creative small business journey! 💕</p>
+</section>
+
+<footer>
+    <p>© 2026 Crochet by Mom • Handcrafted Elegance with Love</p>
+</footer>
+
+<a class="whatsapp" href="https://wa.me/#" target="_blank">
+    <span>💬</span> Chat on WhatsApp
+</a>
+
+</body>
+</html>
