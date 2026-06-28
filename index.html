@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Crochet by Mom — handmade keychains, flowers, bags, scrunchies, and amigurumi toys crafted with love.">
+    <meta name="theme-color" content="#7a3d5c">
     <title>Crochet by Mom - Handmade with Love</title>
     <style>
         :root {
@@ -12,332 +14,444 @@
             --accent-warm: #fff3e6;
             --accent-pink: #ffd6e7;
             --text-dark: #5b3b3b;
+            --nav-height: 56px;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
         }
 
         body {
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-dark);
-            scroll-behavior: smooth;
+            line-height: 1.5;
+            overflow-x: hidden;
+            padding-bottom: calc(80px + env(safe-area-inset-bottom));
         }
 
-        nav {
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a { -webkit-tap-highlight-color: transparent; }
+
+        .navbar {
             position: sticky;
             top: 0;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 15px;
-            text-align: center;
+            padding: 10px 16px;
+            padding-top: max(10px, env(safe-area-inset-top));
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             box-shadow: 0 2px 12px rgba(122, 61, 92, 0.1);
             z-index: 1000;
-            backdrop-filter: blur(5px);
         }
 
-        nav a {
-            margin: 0 15px;
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1100px;
+            margin: auto;
+            position: relative;
+        }
+
+        .logo {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: clamp(1rem, 4vw, 1.3rem);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.75rem;
+            color: var(--primary-color);
+            cursor: pointer;
+            min-width: 44px;
+            min-height: 44px;
+            padding: 0;
+            border-radius: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
             text-decoration: none;
             color: var(--primary-color);
-            font-weight: bold;
-            font-size: 1.1em;
-            transition: color 0.3s ease;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 8px 4px;
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
         }
 
-        nav a:hover {
+        .nav-links a:hover,
+        .nav-links a:focus-visible {
             color: var(--secondary-color);
         }
 
-        header {
-            background: linear-gradient(135deg, var(--accent-pink), var(--accent-warm));
-            padding: 60px 20px;
-            text-align: center;
+        header.hero {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: min(90vh, 820px);
+            padding: clamp(32px, 8vw, 56px) clamp(16px, 4vw, 24px);
+            background: linear-gradient(135deg, #ffd6e7, #fff3e6, #ffe7f2);
             border-bottom: 4px dashed var(--secondary-color);
         }
 
-        header h1 {
-            font-size: 3.5em;
-            margin: 0.2em 0;
-            color: var(--primary-color);
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        .hero-brand {
+            width: min(480px, 92vw);
+            background: #fff;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(122, 61, 92, 0.18);
+            border: 3px solid var(--accent-pink);
         }
 
-        header p {
-            font-size: 1.3em;
-            font-style: italic;
-            margin-bottom: 25px;
-        }
-
-        .btn {
-            display: inline-block;
-            background: var(--secondary-color);
-            color: #fff;
-            padding: 14px 28px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            box-shadow: 0 4px 10px rgba(255, 127, 168, 0.4);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 14px rgba(255, 127, 168, 0.6);
+        .hero-brand img {
+            width: 100%;
         }
 
         section {
-            padding: 60px 20px;
+            padding: clamp(40px, 8vw, 60px) clamp(16px, 4vw, 20px);
             max-width: 1100px;
             margin: auto;
+            content-visibility: auto;
+            contain-intrinsic-size: auto 500px;
         }
 
         h2 {
             text-align: center;
             color: var(--primary-color);
-            font-size: 2.2em;
-            margin-bottom: 40px;
-            position: relative;
+            font-size: clamp(1.6rem, 5vw, 2.2rem);
+            margin: 0 0 32px;
         }
 
         h2::after {
             content: '🌸';
             display: block;
             font-size: 0.5em;
-            margin-top: 10px;
-        }
-
-        .showcase-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-bottom: 50px;
-        }
-
-        .showcase-item {
-            background: #fff;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border: 2px solid var(--accent-pink);
-            text-align: center;
-        }
-
-        .showcase-item img {
-            width: 100%;
-            height: auto;
-            display: block;
+            margin-top: 8px;
         }
 
         .highlights-container {
             text-align: center;
-            margin: 40px 0;
+            margin: 32px 0;
         }
 
         .highlights-img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 24px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+            margin: 0 auto;
+            border-radius: 20px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .highlights-img--qr {
+            max-width: min(320px, 80vw);
+        }
+
+        .instagram-qr-link {
+            display: inline-block;
+            margin: 0 auto;
+            border-radius: 20px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .instagram-qr-link:focus-visible {
+            outline: 3px solid var(--secondary-color);
+            outline-offset: 4px;
+        }
+
+        @media (hover: hover) {
+            .instagram-qr-link:hover {
+                transform: scale(1.03);
+            }
+            .instagram-qr-link:hover .highlights-img {
+                box-shadow: 0 10px 28px rgba(122, 61, 92, 0.2);
+            }
         }
 
         .cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+            gap: 16px;
         }
 
         .card {
             background: #fff;
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 6px 16px rgba(0,0,0,0.04);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
             text-align: center;
             border: 1px solid rgba(255, 214, 231, 0.5);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 22px rgba(122, 61, 92, 0.15);
+        @media (hover: hover) {
+            .card {
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            .card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 10px 22px rgba(122, 61, 92, 0.15);
+            }
         }
 
         .card h3 {
             color: var(--primary-color);
-            margin-top: 0;
+            margin: 0 0 8px;
+            font-size: 1.05rem;
+        }
+
+        .card p {
+            margin: 0;
+            font-size: 0.95rem;
         }
 
         .info-panel {
             background: #fff;
-            border-radius: 24px;
-            padding: 30px;
-            margin-top: 40px;
+            border-radius: 20px;
+            padding: clamp(20px, 5vw, 30px);
             border: 2px dashed var(--secondary-color);
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px;
+            gap: 16px;
         }
 
         .info-panel img {
-            max-width: 100%;
-            height: auto;
             border-radius: 12px;
+        }
+
+        .info-panel p {
+            text-align: center;
+            max-width: 36rem;
+            font-style: italic;
+            margin: 0;
         }
 
         #contact {
             background: linear-gradient(135deg, #fff, var(--accent-warm));
-            border-radius: 24px;
-            padding: 40px;
+            border-radius: 20px;
+            padding: clamp(28px, 6vw, 40px) clamp(16px, 4vw, 24px);
             text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-            margin-bottom: 60px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+            margin-bottom: 40px;
         }
 
         .contact-info {
-            font-size: 1.2em;
-            margin: 15px 0;
+            font-size: clamp(1rem, 3.5vw, 1.15rem);
+            margin: 12px 0;
+        }
+
+        .contact-info a {
+            color: var(--secondary-color);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .contact-note {
+            margin-top: 20px;
+            font-size: 1.05rem;
+            color: var(--primary-color);
         }
 
         footer {
             background: var(--primary-color);
             color: #fff;
             text-align: center;
-            padding: 30px 20px;
-            font-size: 1em;
+            padding: 28px 20px;
+            padding-bottom: max(28px, env(safe-area-inset-bottom));
+            font-size: 0.95rem;
         }
 
         .whatsapp {
             position: fixed;
-            right: 20px;
-            bottom: 20px;
-            background: #25D366;
+            right: max(16px, env(safe-area-inset-right));
+            bottom: max(16px, env(safe-area-inset-bottom));
+            background: #25d366;
             color: #fff;
-            padding: 15px 25px;
+            padding: 14px 20px;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: bold;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            font-weight: 700;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             z-index: 1000;
             display: flex;
             align-items: center;
             gap: 8px;
-            transition: transform 0.2s ease;
+            min-height: 48px;
         }
 
-        .whatsapp:hover {
-            transform: scale(1.05);
+        @media (hover: hover) {
+            .whatsapp:hover { transform: scale(1.04); }
+            .whatsapp { transition: transform 0.2s ease; }
         }
 
         @media (max-width: 768px) {
-            header h1 { font-size: 2.5em; }
-            section { padding: 40px 15px; }
-        }
-    
-.navbar{padding:10px 16px;background:rgba(255,255,255,.85);backdrop-filter:blur(12px)}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1100px;margin:auto}
-.logo{font-weight:700;color:var(--primary-color);font-size:1.3rem}
-.menu-toggle{display:none;background:none;border:none;font-size:1.8rem;color:var(--primary-color)}
-.nav-links{display:flex;gap:18px}
-header{min-height:70vh;display:flex;flex-direction:column;justify-content:center;align-items:center;background:linear-gradient(135deg,#ffd6e7,#fff3e6,#ffe7f2)}
-header .btn{background:linear-gradient(45deg,#ff7fa8,#7a3d5c)}
-@media(max-width:768px){
-.menu-toggle{display:block}
-.nav-links{display:none;position:absolute;top:60px;left:10px;right:10px;background:#fff;border-radius:16px;flex-direction:column;padding:15px;box-shadow:0 10px 30px rgba(0,0,0,.12)}
-.nav-links.open{display:flex;animation:fade .3s}
-nav a{margin:8px 0}
-}
-@keyframes fade{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+            .menu-toggle { display: block; }
 
-</style>
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: calc(100% + 8px);
+                left: 0;
+                right: 0;
+                background: #fff;
+                border-radius: 16px;
+                flex-direction: column;
+                padding: 12px 16px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+            }
+
+            .nav-links.open { display: flex; }
+
+            .nav-links a {
+                width: 100%;
+                padding: 12px 8px;
+            }
+
+            .whatsapp span:last-child { display: none; }
+            .whatsapp { padding: 14px 16px; border-radius: 50%; }
+        }
+    </style>
 </head>
 <body>
 
-<nav class="navbar"><div class="nav-inner"><div class="logo">🧶 Crochet by Mom</div><button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button><div class="nav-links">
-    <a href="#about">About</a>
-    <a href="#explore">Explore World</a>
-    <a href="#products">Products</a>
-    <a href="#care">Care Guide</a>
-    <a href="#contact">Connect</a>
-</div></div></nav>
+<nav class="navbar">
+    <div class="nav-inner">
+        <div class="logo">🧶 Crochet by Mom</div>
+        <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">☰</button>
+        <div class="nav-links" id="nav-links">
+            <a href="#about">About</a>
+            <a href="#explore">Explore World</a>
+            <a href="#products">Products</a>
+            <a href="#care">Care Guide</a>
+            <a href="#contact">Connect</a>
+        </div>
+    </div>
+</nav>
 
-<header>
-    <h1>🧶 Crochet by Mom</h1>
-    <p>Handmade with Love ❤️</p>
-    <a class="btn" href="#products">Explore Entire Collection</a>
+<header id="about" class="hero">
+    <div class="hero-brand">
+        <img src="images/1.jpeg" width="800" height="800" alt="Crochet by Mom — Handmade with Love branding" fetchpriority="high" decoding="async">
+    </div>
 </header>
 
-<section id="about">
-    <h2>About Our Craft</h2>
-    <div class="showcase-grid">
-        <div class="showcase-item">
-            <img src="1782552657549.png" alt="Crochet by Mom Identity Template Image">
+<main>
+    <section id="explore">
+        <h2>Explore Our World</h2>
+        <div class="highlights-container">
+            <img src="images/2.jpeg" class="highlights-img" width="800" height="800" alt="Instagram highlight covers catalog" loading="lazy" decoding="async">
         </div>
-    </div>
-</section>
+    </section>
 
-<section id="explore">
-    <h2>Explore Our World</h2>
-    <div class="highlights-container">
-        <img src="IMG-20260627-WA0005.jpg" class="highlights-img" alt="Instagram Highlight Stories Catalog">
-    </div>
-</section>
+    <section id="products">
+        <h2>Our Signature Creations</h2>
+        <div class="cards">
+            <div class="card">
+                <h3>🧿 Evil Eye Keychain</h3>
+                <p>Handmade lucky charm protecting your keys with style.</p>
+            </div>
+            <div class="card">
+                <h3>🌻 Crochet Flowers</h3>
+                <p>Beautiful ever-blooming sunflowers and floral choices.</p>
+            </div>
+            <div class="card">
+                <h3>👜 Handcrafted Bags</h3>
+                <p>Stylish, spacious granny square pattern accessories.</p>
+            </div>
+            <div class="card">
+                <h3>🎀 Premium Scrunchies</h3>
+                <p>Soft, colorful, elastic hair accessories crafted with comfort.</p>
+            </div>
+            <div class="card">
+                <h3>🐰 Amigurumi Toys</h3>
+                <p>Unbelievably cute crochet plushies, rabbits, and bees.</p>
+            </div>
+            <div class="card">
+                <h3>💝 Custom Requests</h3>
+                <p>Have an idea? Let us weave it into reality specifically for you.</p>
+            </div>
+        </div>
+        <div class="highlights-container">
+            <img src="images/4.jpeg" class="highlights-img" width="800" height="800" alt="Handmade product labels showcase" loading="lazy" decoding="async">
+        </div>
+    </section>
 
-<section id="products">
-    <h2>Our Signature Creations</h2>
-    <div class="cards">
-        <div class="card">
-            <h3>🧿 Evil Eye Keychain</h3>
-            <p>Handmade lucky charm protecting your keys with style.</p>
+    <section id="care">
+        <h2>Handle With Care</h2>
+        <div class="info-panel">
+            <img src="images/3.jpeg" width="564" height="800" alt="Thank you card and care instructions" loading="lazy" decoding="async">
+            <p>"Your order made our day! We hope this little handmade piece brings you lots of joy and smiles. Support small, support handmade."</p>
         </div>
-        <div class="card">
-            <h3>🌻 Crochet Flowers</h3>
-            <p>Beautiful ever-blooming sunflowers and floral choices.</p>
-        </div>
-        <div class="card">
-            <h3>👜 Handcrafted Bags</h3>
-            <p>Stylish, spacious granny square pattern accessories.</p>
-        </div>
-        <div class="card">
-            <h3>🎀 Premium Scrunchies</h3>
-            <p>Soft, colorful, elastic hair accessories crafted with comfort.</p>
-        </div>
-        <div class="card">
-            <h3>🐰 Amigurumi Toys</h3>
-            <p>Unbelievably cute crochet plushies, rabbits, and bees.</p>
-        </div>
-        <div class="card">
-            <h3>💝 Custom Requests</h3>
-            <p>Have an idea? Let us weave it into reality specifically for you.</p>
-        </div>
-    </div>
-    
-    <div class="highlights-container" style="margin-top: 50px;">
-        <img src="IMG-20260627-WA0004.jpg" class="highlights-img" alt="Product Handmade Labels Showcase">
-    </div>
-</section>
+    </section>
 
-<section id="care">
-    <h2>Handle With Care</h2>
-    <div class="info-panel">
-        <img src="IMG-20260627-WA0006.jpg" alt="Care Instructions Infographic">
-        <p style="text-align: center; max-width: 600px; font-style: italic; margin-top: 15px;">
-            "Your order made our day! We hope this little handmade piece brings you lots of joy and smiles. Support small, support handmade."
-        </p>
-    </div>
-</section>
-
-<section id="contact">
-    <h2>Let's Connect</h2>
-    <p class="contact-info">📸 <b>Instagram:</b> <a href="https://www.instagram.com/crochetbymom11" target="_blank" style="color: var(--secondary-color); font-weight: bold; text-decoration: none;">@crochetbymom11</a></p>
-    <p class="contact-info">💬 <b>WhatsApp support available for customized inquiries</b></p>
-    <p style="margin-top: 25px; font-size: 1.1em; color: var(--primary-color);">Thank you for supporting our creative small business journey! 💕</p>
-</section>
+    <section id="contact">
+        <h2>Let's Connect</h2>
+        <div class="highlights-container">
+            <a class="instagram-qr-link" href="https://www.instagram.com/crochetbymom11" target="_blank" rel="noopener noreferrer" aria-label="Open @crochetbymom11 on Instagram">
+                <img src="images/5.jpeg" class="highlights-img highlights-img--qr" width="480" height="800" alt="Scan to follow @crochetbymom11 on Instagram" loading="lazy" decoding="async">
+            </a>
+        </div>
+        <p class="contact-info">📸 <b>Instagram:</b> <a href="https://www.instagram.com/crochetbymom11" target="_blank" rel="noopener noreferrer">@crochetbymom11</a></p>
+        <p class="contact-info">💬 <b>WhatsApp support available for customized inquiries</b></p>
+        <p class="contact-note">Thank you for supporting our creative small business journey! 💕</p>
+    </section>
+</main>
 
 <footer>
     <p>© 2026 Crochet by Mom • Handcrafted Elegance with Love</p>
 </footer>
 
-<a class="whatsapp" href="https://wa.me/#" target="_blank">
-    <span>💬</span> Chat on WhatsApp
+<a class="whatsapp" href="https://wa.me/" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+    <span aria-hidden="true">💬</span>
+    <span>Chat on WhatsApp</span>
 </a>
+
+<script>
+(function () {
+    var toggle = document.querySelector('.menu-toggle');
+    var links = document.getElementById('nav-links');
+    if (!toggle || !links) return;
+
+    function setOpen(open) {
+        links.classList.toggle('open', open);
+        toggle.setAttribute('aria-expanded', open);
+        toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    }
+
+    toggle.addEventListener('click', function () {
+        setOpen(!links.classList.contains('open'));
+    });
+
+    links.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () { setOpen(false); });
+    });
+})();
+</script>
 
 </body>
 </html>
